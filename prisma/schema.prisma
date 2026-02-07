@@ -1,0 +1,147 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ===== Community Members / Experts =====
+
+model Expert {
+  id        String   @id @default(cuid())
+  nameEn    String
+  nameRu    String
+  roleEn    String
+  roleRu    String
+  bioEn     String
+  bioRu     String
+  domain    Domain
+  avatarUrl String?
+  links     Json?    // { github, linkedin, twitter, website }
+  order     Int      @default(0)
+  visible   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Domain {
+  nlp
+  cv
+  mlops
+  genai
+  ds
+  robotics
+}
+
+// ===== Events =====
+
+model Event {
+  id            String          @id @default(cuid())
+  titleEn       String
+  titleRu       String
+  descriptionEn String
+  descriptionRu String
+  date          DateTime
+  time          String
+  locationEn    String
+  locationRu    String
+  isOnline      Boolean         @default(false)
+  maxSpots      Int?
+  type          EventType
+  visible       Boolean         @default(true)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  registrations EventRegistration[]
+}
+
+enum EventType {
+  meetup
+  workshop
+  conference
+  hackathon
+}
+
+model EventRegistration {
+  id        String   @id @default(cuid())
+  eventId   String
+  event     Event    @relation(fields: [eventId], references: [id])
+  name      String
+  email     String
+  createdAt DateTime @default(now())
+
+  @@unique([eventId, email])
+}
+
+// ===== Announcements =====
+
+model Announcement {
+  id        String   @id @default(cuid())
+  titleEn   String
+  titleRu   String
+  contentEn String
+  contentRu String
+  date      DateTime @default(now())
+  visible   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ===== Speech Proposals =====
+
+model SpeechProposal {
+  id        String          @id @default(cuid())
+  name      String
+  email     String
+  topic     String
+  abstract  String
+  duration  Int             // minutes
+  level     AudienceLevel
+  bio       String?
+  status    ProposalStatus  @default(pending)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+}
+
+enum AudienceLevel {
+  beginner
+  intermediate
+  advanced
+}
+
+enum ProposalStatus {
+  pending
+  accepted
+  rejected
+}
+
+// ===== Partnership Requests =====
+
+model PartnershipRequest {
+  id          String          @id @default(cuid())
+  orgName     String
+  contactName String
+  email       String
+  phone       String?
+  type        PartnershipType
+  message     String
+  status      RequestStatus   @default(pending)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
+
+enum PartnershipType {
+  sponsor
+  venue
+  media
+  tech
+  other
+}
+
+enum RequestStatus {
+  pending
+  contacted
+  active
+  declined
+}

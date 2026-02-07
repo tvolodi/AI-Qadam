@@ -1,0 +1,10 @@
+# Replace with your actual domain
+aiqadam.com {
+    reverse_proxy app:3000
+    encode gzip
+}
+
+# www redirect
+www.aiqadam.com {
+    redir https://aiqadam.com{uri} permanent
+}
