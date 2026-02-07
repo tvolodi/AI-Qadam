@@ -34,6 +34,11 @@ COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/node_modules/prisma ./node_modules/prisma
 
+# Create a convenience script for prisma CLI
+RUN echo '#!/bin/sh' > /usr/local/bin/prisma && \
+    echo 'exec node /app/node_modules/prisma/build/index.js "$@"' >> /usr/local/bin/prisma && \
+    chmod +x /usr/local/bin/prisma
+
 USER nextjs
 
 EXPOSE 3000
