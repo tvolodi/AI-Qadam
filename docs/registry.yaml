@@ -1,0 +1,93 @@
+# ============================================================
+# AI-Qadam Knowledge Base — Master Registry
+# ============================================================
+# This file is the single entry point for all AI agents.
+# Agents: parse this file first, filter by category/tags/id,
+#          then read only the target .md file.
+# Maintained by: Tech Writer agent
+# ============================================================
+
+schema_version: "1.0"
+project: ai-qadam
+updated: "2026-02-07"
+
+# ------ Categories ------
+
+categories:
+
+  # --- Standards ---
+  standards:
+    description: "Technology choices, coding conventions, architectural decisions"
+    docs:
+      - id: STD-001
+        title: Tech Stack
+        path: standards/tech-stack.md
+        tags: [architecture, dependencies, next.js, prisma, tailwind]
+        summary: "Core technologies, versions, and rationale"
+
+      - id: STD-002
+        title: Coding Style
+        path: standards/coding-style.md
+        tags: [conventions, typescript, react, naming]
+        summary: "Naming conventions, file structure, component patterns"
+
+      - id: STD-003
+        title: Project Structure
+        path: standards/project-structure.md
+        tags: [architecture, folders, layout]
+        summary: "Directory layout, module boundaries, import aliases"
+
+  # --- Guides ---
+  guides:
+    description: "How-to instructions for development, testing, tooling"
+    docs:
+      - id: GDE-001
+        title: Source Code Development
+        path: guides/source-code.md
+        tags: [development, workflow, components, api]
+        summary: "Step-by-step guide for implementing features"
+
+      - id: GDE-002
+        title: Testing
+        path: guides/testing.md
+        tags: [testing, jest, playwright, coverage]
+        summary: "Test writing conventions, run commands, coverage targets"
+
+      - id: GDE-003
+        title: Tooling & DevOps
+        path: guides/tooling.md
+        tags: [tooling, docker, deployment, ci, scripts]
+        summary: "Build, deploy, Docker, CI/CD, useful scripts"
+
+  # --- Issues ---
+  issues:
+    description: "Bug reports and incident records"
+    registry: issues/registry.yaml
+    docs: []  # populated in issues/registry.yaml
+
+  # --- Requirements ---
+  requirements:
+    description: "Feature specifications created by Business Analyst agent"
+    docs: []  # entries added as REQ-NNN.md files are created
+
+  # --- Templates ---
+  templates:
+    description: "Document templates for agents to copy when creating new docs"
+    docs:
+      - id: TPL-ISSUE
+        title: Issue Template
+        path: templates/issue-template.md
+        tags: [template, issue]
+        summary: "Template for new issue documents"
+
+      - id: TPL-REQ
+        title: Requirement Template
+        path: templates/requirement-template.md
+        tags: [template, requirement]
+        summary: "Template for new requirement/feature documents"
+
+      - id: TPL-RELEASE
+        title: Release Notes Template
+        path: templates/release-template.md
+        tags: [template, release]
+        summary: "Template for release notes"

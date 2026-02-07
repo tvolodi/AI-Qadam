@@ -1,0 +1,26 @@
+# ============================================================
+# AI-Qadam — Issue Registry
+# ============================================================
+# Maintained by: Issue Resolver agent
+# Each issue has a companion .md file with full details.
+#
+# Status values: open | investigating | in-progress | resolved | closed | wontfix
+# Severity values: critical | high | medium | low
+# ============================================================
+
+schema_version: "1.0"
+next_id: 1          # increment when creating a new issue
+updated: "2026-02-07"
+
+issues: []
+# Example entry:
+# - id: ISS-001
+#   title: "Short description of the issue"
+#   status: open
+#   severity: medium
+#   reported: "2026-02-07"
+#   resolved: null
+#   path: ISS-001.md
+#   linked: []        # related REQ / ISS / STD ids
+#   tags: [ui, login]
+#   assignee: BugFixer
